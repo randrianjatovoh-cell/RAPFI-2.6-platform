@@ -45,6 +45,5 @@ router.get('/users', authenticateToken, async (req, res) => {
   res.json(users);
 });
 
-createAdminIfNotExists();
 
 module.exports = router;

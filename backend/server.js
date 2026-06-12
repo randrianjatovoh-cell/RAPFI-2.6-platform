@@ -2,6 +2,7 @@ require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const { initDb } = require('./db');
+const { createAdminIfNotExists } = require('./models'); // ← ajout
 
 const app = express();
 app.use(cors({ origin: process.env.FRONTEND_URL || 'http://localhost:3000', credentials: true }));
@@ -21,7 +22,8 @@ app.use('/api/users', require('./routes/users'));
 app.use('/api/eglises', require('./routes/eglises'));
 
 const start = async () => {
-  await initDb();
+  await initDb();               // 1. Crée les tables et ajoute les colonnes
+  await createAdminIfNotExists(); // 2. Crée l'admin après que la base soit prête
   app.listen(process.env.PORT || 5000, () => {
     console.log('✅ Backend démarré sur http://localhost:5000');
   });
