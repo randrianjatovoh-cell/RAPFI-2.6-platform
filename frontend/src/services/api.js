@@ -1,4 +1,6 @@
-const API_BASE = process.env.REACT_APP_API_URL || 'http://localhost:5000/api';
+// src/services/api.js
+// URL du backend Railway (fixe)
+const API_BASE = 'https://rapfi-26-platform-production.up.railway.app/api';
 
 let authToken = null;
 
